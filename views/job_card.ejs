@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .job-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            padding: 20px;
+            cursor: pointer;
+        }
+        .job-card h2 {
+            margin-top: 0;
+        }
+        .job-card-details {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .job-card.active .job-card-details {
+            display: block;
+        }
+        .job-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .job-card a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trending Job Listings</h1>
+        <% jobs.forEach(function(job, index) { %>
+            <div class="job-card" id="card_<%= index %>" onclick="toggleDetails('card_<%= index %>')">
+                <h2><%= job.positionName %></h2>
+                <div class="job-card-details">
+                    <p><strong>Company:</strong> <%= job.company %></p>
+                    <p><strong>Location:</strong> <%= job.location %></p>
+                    <p><strong>Experience:</strong> <%= job.experience %></p>
+                    <p><strong>Education:</strong> <%= job.education %></p>
+                    <p><strong>Responsibilities:</strong> <%= job.responsibilities %></p>
+                    <p><strong>Key Result Areas:</strong> <%= job.key_result_areas %></p>
+                    <p><strong>Skills:</strong> <%= job.skills %></p>
+                    <a href="<%= job.apply_link %>" class="apply-link" target="_blank">Apply Now</a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    <script>
+        function toggleDetails(cardId) {
+            var card = document.getElementById(cardId);
+            card.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
